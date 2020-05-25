@@ -16,7 +16,7 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode(longueur * 20, hauteur * 20), "Le Labyrinthe Du Renard");
 
-    std::cout << "Start du jeu" << std::endl;
+    std::cout << "Start du super jeu" << std::endl;
 
 
     sf::RectangleShape player1(sf::Vector2f(longueur, hauteur));
