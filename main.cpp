@@ -2,6 +2,7 @@
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "shape.h"
+#include "Fenetre.h"
 
 int main() {
     double px1 = 36;
@@ -13,8 +14,9 @@ int main() {
     float vitesse_deplacement = 0.1;
     sf::Vector2f before_p1;
     sf::Vector2f before_p2;
+    Fenetre window(longueur, hauteur);
+    window.run();
 
-    sf::RenderWindow window(sf::VideoMode(longueur * 20, hauteur * 20), "Le Labyrinthe Du Renard");
 
     std::cout << "Start du super jeu" << std::endl;
 
@@ -60,14 +62,12 @@ int main() {
                 mur.setFillColor(sf::Color::White);
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
-            }
-            else if (tabmap[y][x] == 2){
+            } else if (tabmap[y][x] == 2) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor((sf::Color(120,0, 0)));
+                mur.setFillColor((sf::Color(120, 0, 0)));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
-            }
-            else if (tabmap[y][x] == 3){
+            } else if (tabmap[y][x] == 3) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
                 mur.setFillColor((sf::Color(0, 0, 120)));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
@@ -126,16 +126,18 @@ int main() {
                 int left = x * longueur;
                 int right = x * longueur + longueur;
 
-                if (tabmap[y][x] == 1 && py1 <= bottom && py1 + hauteur >= top && px1 <= right && px1 + longueur >= left) {
+                if (tabmap[y][x] == 1 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                    px1 + longueur >= left) {
                     px1 = before_p1.x;
                     py1 = before_p1.y;
-                }
-                else if (tabmap[y][x] == 1 && py2 <= bottom && py2 + hauteur >= top && px2 <= right && px2 + longueur >= left) {
+                } else if (tabmap[y][x] == 1 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
                     px2 = before_p2.x;
                     py2 = before_p2.y;
+                } else if (tabmap[y][x] == 2 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    window.close();
                 }
-                else if (tabmap[y][x] == 2 && py1 <= bottom && py1 + hauteur >= top && px1 <= right && px1 + longueur >= left){
-                    window.close();}
             }
 
         }

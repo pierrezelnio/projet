@@ -6,5 +6,5 @@ set(CMAKE_CXX_STANDARD 17)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(TP5 main.cpp shape.h source.cpp)
+add_executable(TP5 main.cpp shape.h source.cpp Fenetre.cpp Fenetre.h)
 target_link_libraries(TP5 ${CONAN_LIBS})
