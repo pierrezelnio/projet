@@ -18,7 +18,7 @@ int main() {
     window.run();
 
 
-    std::cout << "Start du superr jeu" << std::endl;
+    std::cout << "Start du super jeu" << std::endl;
 
 
     sf::RectangleShape player1(sf::Vector2f(longueur, hauteur));
