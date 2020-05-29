@@ -22,10 +22,10 @@ int main() {
 
 
     sf::RectangleShape player1(sf::Vector2f(longueur, hauteur));
-    player1.setFillColor(sf::Color::Red);
+    player1.setFillColor(sf::Color(236, 64, 64));
 
     sf::RectangleShape player2(sf::Vector2f(longueur, hauteur));
-    player2.setFillColor(sf::Color::Cyan);
+    player2.setFillColor(sf::Color(87, 87, 236));
 
     int tabmap[20][20] =
             {
@@ -59,17 +59,17 @@ int main() {
         for (int x = 0; x < 20; x++) {
             if (tabmap[y][x] == 1) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor(sf::Color::White);
+                mur.setFillColor(sf::Color(0, 230, 0));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
             } else if (tabmap[y][x] == 2) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor((sf::Color(120, 0, 0)));
+                mur.setFillColor((sf::Color::Red));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
             } else if (tabmap[y][x] == 3) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor((sf::Color(0, 0, 120)));
+                mur.setFillColor((sf::Color::Blue));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
             }
@@ -134,16 +134,21 @@ int main() {
                            px2 + longueur >= left) {
                     px2 = before_p2.x;
                     py2 = before_p2.y;
-                } else if (tabmap[y][x] == 2 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                } else if (tabmap[y][x] == 2 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    px2 = before_p2.x;
+                    py2 = before_p2.y;
+                } else if (tabmap[y][x] == 3 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                            px1 + longueur >= left) {
-                    window.close();
+                    px1 = before_p1.x;
+                    py1 = before_p1.y;
                 }
             }
 
         }
 
 
-        window.clear(sf::Color(0, 230, 0));
+        window.clear(sf::Color(182, 230, 130));
 
         for (int i = 0; i < mur_vnr.size(); i++)
             window.draw(mur_vnr[i]);
