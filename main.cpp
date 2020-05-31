@@ -11,21 +11,21 @@ int main() {
     double py2 = 36;
     int longueur = 32;
     int hauteur = 32;
-    float vitesse_deplacement = 0.1;
+    float vitesse_deplacement = 0.08;
     sf::Vector2f before_p1;
     sf::Vector2f before_p2;
+    sf::Texture personnage_1;
+    sf::Texture personnage_2;
+    sf::Sprite sprite_personnage_1;
+    sf::Sprite sprite_personnage_2;
+    //sf::Texture renard_coin;
+    //sf::Sprite sprite_renard_coin;
     Fenetre window(longueur, hauteur);
     window.run();
 
 
     std::cout << "Start du super jeu" << std::endl;
 
-
-    sf::RectangleShape player1(sf::Vector2f(longueur, hauteur));
-    player1.setFillColor(sf::Color(236, 64, 64));
-
-    sf::RectangleShape player2(sf::Vector2f(longueur, hauteur));
-    player2.setFillColor(sf::Color(87, 87, 236));
 
     int tabmap[20][20] =
             {
@@ -64,17 +64,30 @@ int main() {
                 mur_vnr.push_back(mur);
             } else if (tabmap[y][x] == 2) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor((sf::Color::Red));
+                mur.setFillColor((sf::Color::Blue));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
             } else if (tabmap[y][x] == 3) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor((sf::Color::Blue));
+                mur.setFillColor((sf::Color::Red));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
             }
         }
     }
+    if (!personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                   sf::IntRect(128, 0, 32, 32))) {
+        std::cout << "echec du sprite" << std::endl;
+    }
+
+    if (!personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                   sf::IntRect(224, 0, 32, 32))) {
+        std::cout << "echec du sprite" << std::endl;
+    }
+
+
+    sprite_personnage_1.setTexture(personnage_1);
+    sprite_personnage_2.setTexture(personnage_2);
 
     while (window.isOpen()) {
         sf::Event event{};
@@ -116,8 +129,8 @@ int main() {
             px2 = 574, py2 = 36;
         }
 
-        player1.setPosition(sf::Vector2f(px1, py1));
-        player2.setPosition(sf::Vector2f(px2, py2));
+        sprite_personnage_1.setPosition(sf::Vector2f(px1, py1));
+        sprite_personnage_2.setPosition(sf::Vector2f(px2, py2));
 
         for (int y = 0; y < 20; y++) {
             for (int x = 0; x < 20; x++) {
@@ -154,8 +167,8 @@ int main() {
             window.draw(mur_vnr[i]);
 
 
-        window.draw(player1);
-        window.draw(player2);
+        window.draw(sprite_personnage_1);
+        window.draw(sprite_personnage_2);
         window.display();
     }
     std::cout << "J'ai leave la fenetre proprement !" << std::endl;
