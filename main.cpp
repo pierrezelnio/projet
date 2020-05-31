@@ -11,13 +11,15 @@ int main() {
     double py2 = 36;
     int longueur = 32;
     int hauteur = 32;
-    float vitesse_deplacement = 0.08;
+    float vitesse_deplacement = 0.4;
     sf::Vector2f before_p1;
     sf::Vector2f before_p2;
     sf::Texture personnage_1;
     sf::Texture personnage_2;
     sf::Sprite sprite_personnage_1;
     sf::Sprite sprite_personnage_2;
+    sf::Texture commandes;
+    sf::Sprite sprite_commandes;
     //sf::Texture renard_coin;
     //sf::Sprite sprite_renard_coin;
     Fenetre window(longueur, hauteur);
@@ -40,9 +42,9 @@ int main() {
                     {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                     {1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
                     {1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
@@ -85,9 +87,14 @@ int main() {
         std::cout << "echec du sprite" << std::endl;
     }
 
+    if (!commandes.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/commandes_de_jeu.PNG")) {
+        std::cout << "echec du sprite des commandes" << std::endl;
+
+    }
 
     sprite_personnage_1.setTexture(personnage_1);
     sprite_personnage_2.setTexture(personnage_2);
+    sprite_commandes.setTexture(commandes);
 
     while (window.isOpen()) {
         sf::Event event{};
@@ -103,30 +110,58 @@ int main() {
         before_p2.y = py2;
         //DEPLACEMENT AU CLAVIER P1
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             py1 = py1 - vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                        sf::IntRect(128, 96, 32, 32)); }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             py1 = py1 + vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(128, 0, 32, 32));
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             px1 = px1 - vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(128, 32, 32, 32));
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             px1 = px1 + vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(128, 64, 32, 32));
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
             px1 = 35, py1 = 35;
         }
 
         //DEPLACEMENT AU CLAVIER P2
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             py2 = py2 - vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(224, 96, 32, 32)); }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
             py2 = py2 + vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(224, 0, 32, 32));
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
             px2 = px2 - vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(224, 32, 32, 32));
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
             px2 = px2 + vitesse_deplacement;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::G)) {
+            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+                                      sf::IntRect(224, 64, 32, 32));}
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
             px2 = 574, py2 = 36;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+            commandes.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fond_transparent.png");
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
+            commandes.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/commandes_de_jeu.PNG");
         }
 
         sprite_personnage_1.setPosition(sf::Vector2f(px1, py1));
@@ -169,6 +204,7 @@ int main() {
 
         window.draw(sprite_personnage_1);
         window.draw(sprite_personnage_2);
+        window.draw(sprite_commandes);
         window.display();
     }
     std::cout << "J'ai leave la fenetre proprement !" << std::endl;
