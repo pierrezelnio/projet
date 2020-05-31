@@ -26,7 +26,7 @@ int main() {
     window.run();
 
 
-    std::cout << "Start du super jeu" << std::endl;
+    std::cout << "Start du meilleur jeu français" << std::endl;
 
 
     int tabmap[20][20] =
