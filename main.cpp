@@ -9,9 +9,11 @@ int main() {
     double py1 = 36;
     double px2 = 574;
     double py2 = 36;
+    double variable_intermediaire_x;
+    double variable_intermediaire_y;
     int longueur = 32;
     int hauteur = 32;
-    float vitesse_deplacement = 0.4;
+    float vitesse_deplacement = 0.8;
     sf::Vector2f before_p1;
     sf::Vector2f before_p2;
     sf::Texture personnage_1;
@@ -20,19 +22,22 @@ int main() {
     sf::Sprite sprite_personnage_2;
     sf::Texture commandes;
     sf::Sprite sprite_commandes;
-    //sf::Texture renard_coin;
-    //sf::Sprite sprite_renard_coin;
+    sf::Font font;
+    sf::Text text;
+
     Fenetre window(longueur, hauteur);
     window.run();
 
 
-    std::cout << "Start du meilleur jeu français" << std::endl;
+    std::cout << "Lancement du jeu" << std::endl;
 
 
-    int tabmap[20][20] =
+
+
+    int tabmap[20][20] = //CORRESPOND A MA MAP
             {
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
@@ -47,9 +52,9 @@ int main() {
                     {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
                     {1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
                     {1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 
 
@@ -59,17 +64,17 @@ int main() {
 
     for (int y = 0; y < 20; y++) {
         for (int x = 0; x < 20; x++) {
-            if (tabmap[y][x] == 1) {
+            if (tabmap[y][x] == 1) { //Creation de carre 32x32 couleur verte a chaque 1 dans le tabmap
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
                 mur.setFillColor(sf::Color(0, 230, 0));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
-            } else if (tabmap[y][x] == 2) {
+            } else if (tabmap[y][x] == 2) { //Creation de carre 32x32 couleur bleu a chaque 2 dans le tabmap
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
                 mur.setFillColor((sf::Color::Blue));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
-            } else if (tabmap[y][x] == 3) {
+            } else if (tabmap[y][x] == 3) { //Creation de carre 32x32 couleur rouge a chaque 3 dans le tabmap
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
                 mur.setFillColor((sf::Color::Red));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
@@ -77,20 +82,32 @@ int main() {
             }
         }
     }
-    if (!personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+
+
+    if (!personnage_1.loadFromFile("res/fox_vi12.png", //Sprite de base du perso 1
                                    sf::IntRect(128, 0, 32, 32))) {
         std::cout << "echec du sprite" << std::endl;
     }
 
-    if (!personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+    if (!personnage_2.loadFromFile("res/img/fox_vi12.png", //Sprite de base du perso 2
                                    sf::IntRect(224, 0, 32, 32))) {
         std::cout << "echec du sprite" << std::endl;
     }
 
-    if (!commandes.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/commandes_de_jeu.PNG")) {
+    if (!commandes.loadFromFile("res/img/commandes_de_jeu.PNG")) { //Sprite des commandes
         std::cout << "echec du sprite des commandes" << std::endl;
 
     }
+
+    if (!font.loadFromFile("res/font/ALBAM.TTF")){ //Police d'ecriture
+        std::cout << "echec de la police d'ecriture" << std::endl;
+    }
+
+    text.setFont(font);      //Proprietes de ma police d'ecriture
+    text.setString("ZelnioGame");
+    text.setPosition(200, -5);
+    text.setOutlineColor(sf::Color(255, 179, 71));
+    text.setOutlineThickness(2);
 
     sprite_personnage_1.setTexture(personnage_1);
     sprite_personnage_2.setTexture(personnage_2);
@@ -101,6 +118,20 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+
+            }
+            if(event.type == sf::Event::KeyPressed){
+                if (event.key.code == sf::Keyboard::T){
+
+                    variable_intermediaire_x = px1;
+                    variable_intermediaire_y = py1;
+                    px1 = px2;
+                    py1 = py2;
+                    px2= variable_intermediaire_x;
+                    py2= variable_intermediaire_y;
+                    std::cout << "switch" << std::endl;
+
+                }
             }
         }
 
@@ -108,25 +139,26 @@ int main() {
         before_p1.y = py1;
         before_p2.x = px2;
         before_p2.y = py2;
+
         //DEPLACEMENT AU CLAVIER P1
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             py1 = py1 - vitesse_deplacement;
-            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_1.loadFromFile("res/img/fox_vi12.png",
                                         sf::IntRect(128, 96, 32, 32)); }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
             py1 = py1 + vitesse_deplacement;
-            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_1.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(128, 0, 32, 32));
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
             px1 = px1 - vitesse_deplacement;
-            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_1.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(128, 32, 32, 32));
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
             px1 = px1 + vitesse_deplacement;
-            personnage_1.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_1.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(128, 64, 32, 32));
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
@@ -137,31 +169,31 @@ int main() {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             py2 = py2 - vitesse_deplacement;
-            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_2.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(224, 96, 32, 32)); }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
             py2 = py2 + vitesse_deplacement;
-            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_2.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(224, 0, 32, 32));
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
             px2 = px2 - vitesse_deplacement;
-            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_2.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(224, 32, 32, 32));
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
             px2 = px2 + vitesse_deplacement;
-            personnage_2.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fox_vi12.png",
+            personnage_2.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(224, 64, 32, 32));}
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
             px2 = 574, py2 = 36;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-            commandes.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/fond_transparent.png");
+            commandes.loadFromFile("res/img/fond_transparent.png");
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
-            commandes.loadFromFile("C:/Users/zelnio.pierre/CLionProjects/TP5/commandes_de_jeu.PNG");
+            commandes.loadFromFile("res/img/commandes_de_jeu.PNG");
         }
 
         sprite_personnage_1.setPosition(sf::Vector2f(px1, py1));
@@ -169,10 +201,10 @@ int main() {
 
         for (int y = 0; y < 20; y++) {
             for (int x = 0; x < 20; x++) {
-                int top = y * hauteur;
-                int bottom = y * hauteur + hauteur;
-                int left = x * longueur;
-                int right = x * longueur + longueur;
+                int top = y * hauteur + 2;
+                int bottom = y * hauteur + hauteur - 2;
+                int left = x * longueur + 2;
+                int right = x * longueur + longueur - 2;
 
                 if (tabmap[y][x] == 1 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                     px1 + longueur >= left) {
@@ -195,7 +227,6 @@ int main() {
 
         }
 
-
         window.clear(sf::Color(182, 230, 130));
 
         for (int i = 0; i < mur_vnr.size(); i++)
@@ -205,9 +236,10 @@ int main() {
         window.draw(sprite_personnage_1);
         window.draw(sprite_personnage_2);
         window.draw(sprite_commandes);
+        window.draw(text);
         window.display();
     }
-    std::cout << "J'ai leave la fenetre proprement !" << std::endl;
+    std::cout << "Fermeture du jeu, à bientôt!" << std::endl;
 
     return 0;
 
