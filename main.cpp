@@ -7,7 +7,7 @@
 int main() {
     double px1 = 36;
     double py1 = 36;
-    double px2 = 574;
+    double px2 = 866;
     double py2 = 36;
     double variable_intermediaire_x;
     double variable_intermediaire_y;
@@ -33,41 +33,37 @@ int main() {
     std::cout << "Lancement du jeu" << std::endl;
 
 
-
-
-    int tabmap[31][31] = //CORRESPOND A MA MAP
+    int tabmap[29][29] = //CORRESPOND A MA MAP
             {
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 4, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 1, 1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1},
+                    {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 4, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 1, 1, 0, 2, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
+                    {1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
+                    {1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1},
+                    {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
+                    {1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+                    {1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1},
+                    {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
+                    {1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
+                    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
+                    {1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 
 
             };
@@ -91,10 +87,10 @@ int main() {
                 mur.setFillColor((sf::Color::Red));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
-            } else if (tabmap[y][x] == 4){
+            } else if (tabmap[y][x] == 4) {
                 sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
                 mur.setFillColor((sf::Color::Yellow));
-                mur.setPosition(sf::Vector2f(x * longueur,y * hauteur));
+                mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
             }
         }
@@ -116,7 +112,7 @@ int main() {
 
     }
 
-    if (!font.loadFromFile("res/font/ALBAM.TTF")){ //Police d'ecriture
+    if (!font.loadFromFile("res/font/ALBAM.TTF")) { //Police d'ecriture
         std::cout << "echec de la police d'ecriture" << std::endl;
     }
 
@@ -139,15 +135,15 @@ int main() {
                 window.close();
 
             }
-            if(event.type == sf::Event::KeyPressed){
-                if (event.key.code == sf::Keyboard::T){
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::T) {
 
                     variable_intermediaire_x = px1;
                     variable_intermediaire_y = py1;
                     px1 = px2;
                     py1 = py2;
-                    px2= variable_intermediaire_x;
-                    py2= variable_intermediaire_y;
+                    px2 = variable_intermediaire_x;
+                    py2 = variable_intermediaire_y;
                     std::cout << "switch" << std::endl;
 
                 }
@@ -164,54 +160,49 @@ int main() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             py1 = py1 - vitesse_deplacement;
             personnage_1.loadFromFile("res/img/fox_vi12.png",
-                                        sf::IntRect(128, 96, 32, 32)); }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+                                      sf::IntRect(128, 96, 32, 32));
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             py1 = py1 + vitesse_deplacement;
             personnage_1.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(128, 0, 32, 32));
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             px1 = px1 - vitesse_deplacement;
             personnage_1.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(128, 32, 32, 32));
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             px1 = px1 + vitesse_deplacement;
             personnage_1.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(128, 64, 32, 32));
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
             px1 = 35, py1 = 35;
         }
 
         //DEPLACEMENT AU CLAVIER P2
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
             py2 = py2 - vitesse_deplacement;
             personnage_2.loadFromFile("res/img/fox_vi12.png",
-                                      sf::IntRect(224, 96, 32, 32)); }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+                                      sf::IntRect(224, 96, 32, 32));
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             py2 = py2 + vitesse_deplacement;
             personnage_2.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(224, 0, 32, 32));
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
             px2 = px2 - vitesse_deplacement;
             personnage_2.loadFromFile("res/img/fox_vi12.png",
                                       sf::IntRect(224, 32, 32, 32));
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
             px2 = px2 + vitesse_deplacement;
             personnage_2.loadFromFile("res/img/fox_vi12.png",
-                                      sf::IntRect(224, 64, 32, 32));}
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-            px2 = 574, py2 = 36;
+                                      sf::IntRect(224, 64, 32, 32));
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+            px2 = 866, py2 = 36;
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
             commandes.loadFromFile("res/img/fond_transparent.png");
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) {
             commandes.loadFromFile("res/img/commandes_de_jeu.PNG");
         }
 
