@@ -12,8 +12,8 @@ int main() {
     double py2 = 36;
     double variable_intermediaire_x;
     double variable_intermediaire_y;
-    int longueur = 32;
-    int hauteur = 32;
+    float longueur = 32;
+    float hauteur = 32;
     int taille_map = 29;
     float vitesse_deplacement = 0.8;
     sf::Vector2f before_p1;
@@ -22,6 +22,17 @@ int main() {
     sf::Texture personnage_2;
     sf::Sprite sprite_personnage_1;
     sf::Sprite sprite_personnage_2;
+    sf::Texture piece;
+    sf::Sprite sprite_piece_1;
+    sf::Sprite sprite_piece_2;
+    sf::Sprite sprite_piece_3;
+    sf::Sprite sprite_piece_4;
+    sf::Sprite sprite_piece_5;
+    sf::Sprite sprite_piece_6;
+    sf::Sprite sprite_piece_7;
+    sf::Sprite sprite_piece_8;
+    sf::Sprite sprite_piece_9;
+    sf::Sprite sprite_piece_10;
     sf::Font font;
     sf::Text label;
     sf::Text win_text;
@@ -42,28 +53,28 @@ int main() {
                     {1, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1},
                     {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 1, 1, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 1, 1, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 1},
                     {1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
                     {1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 3, 1},
                     {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 3, 1, 0, 1, 1, 0, 1, 0, 1},
-                    {1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                    {1, 1, 1, 1, 0, 0, 3, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
                     {1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
                     {1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1},
-                    {1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 3, 0, 1, 1, 1, 1, 1},
+                    {1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 3, 0, 1, 1, 1, 2, 1},
                     {1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
                     {1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
+                    {1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
                     {1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 1},
                     {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 1, 3, 1, 1},
-                    {1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1},
+                    {1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1},
                     {1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 2, 1, 1},
-                    {1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 1, 0, 1, 0, 0, 1, 0, 3, 0, 0, 1},
+                    {1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 1, 0, 1, 5, 0, 1, 0, 3, 0, 0, 1},
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 
 
@@ -93,6 +104,11 @@ int main() {
                 mur.setFillColor((sf::Color::Yellow));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
+            } else if (tabmap[y][x] == 5) {
+                sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
+                mur.setFillColor((sf::Color(250, 102, 0)));
+                mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
+                mur_vnr.push_back(mur);
             }
         }
     }
@@ -107,6 +123,21 @@ int main() {
                                    sf::IntRect(224, 0, 32, 32))) {
         std::cout << "echec du sprite" << std::endl;
     }
+
+    if (!piece.loadFromFile("res/img/piece.JPG",
+                            sf::IntRect (7, 7, 32, 32))){
+        std::cout << "echec du sprite piece" << std::endl;
+    }
+    sprite_piece_1.setPosition(longueur*10, hauteur*7);
+    sprite_piece_2.setPosition(longueur*10, hauteur*2);
+    sprite_piece_3.setPosition(longueur*27, hauteur*9);
+    sprite_piece_4.setPosition(longueur*1, hauteur*25);
+    sprite_piece_5.setPosition(longueur*14, hauteur*13);
+    sprite_piece_6.setPosition(longueur*17, hauteur*26);
+    sprite_piece_7.setPosition(longueur*25, hauteur*16);
+    sprite_piece_8.setPosition(longueur*6, hauteur*2);
+    sprite_piece_9.setPosition(longueur*12, hauteur*9);
+    sprite_piece_10.setPosition(longueur*22, hauteur*5);
 
     if (!font.loadFromFile("res/font/ALBAM.TTF")) { //Police d'ecriture
         std::cout << "echec de la police d'ecriture" << std::endl;
@@ -123,6 +154,16 @@ int main() {
 
     sprite_personnage_1.setTexture(personnage_1);
     sprite_personnage_2.setTexture(personnage_2);
+    sprite_piece_1.setTexture(piece);
+    sprite_piece_2.setTexture(piece);
+    sprite_piece_3.setTexture(piece);
+    sprite_piece_4.setTexture(piece);
+    sprite_piece_5.setTexture(piece);
+    sprite_piece_6.setTexture(piece);
+    sprite_piece_7.setTexture(piece);
+    sprite_piece_8.setTexture(piece);
+    sprite_piece_9.setTexture(piece);
+    sprite_piece_10.setTexture(piece);
 
 
     while (window.isOpen()) {
@@ -225,7 +266,7 @@ int main() {
                     py1 = before_p1.y;
 
                 } else if (tabmap[y][x] == 4 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
-                           px1 + longueur >= left) {
+                           px1 + longueur >= left){
 
                     win_text.setFont(font);
                     win_text.setString(" YOU WIN");
@@ -233,9 +274,6 @@ int main() {
                     win_text.setPosition(50, 200);
                     win_text.setOutlineColor(sf::Color::Blue);
                     win_text.setOutlineThickness(0);
-
-
-
 
 
                 }
@@ -251,6 +289,16 @@ int main() {
 
         window.draw(sprite_personnage_1);
         window.draw(sprite_personnage_2);
+        window.draw(sprite_piece_1);
+        window.draw(sprite_piece_2);
+        window.draw(sprite_piece_3);
+        window.draw(sprite_piece_4);
+        window.draw(sprite_piece_5);
+        window.draw(sprite_piece_6);
+        window.draw(sprite_piece_7);
+        window.draw(sprite_piece_8);
+        window.draw(sprite_piece_9);
+        window.draw(sprite_piece_10);
         window.draw(label);
         window.draw(win_text);
         window.display();
