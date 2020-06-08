@@ -7,14 +7,14 @@
 #include "windows.h"
 
 int main() {
-    double px1 = 36;
-    double py1 = 36;
-    double px2 = 866;
-    double py2 = 36;
-    double variable_intermediaire_x;
-    double variable_intermediaire_y;
     float longueur = 32;
     float hauteur = 32;
+    double px1 = longueur;
+    double py1 = hauteur;
+    double px2 = longueur * 27;
+    double py2 = hauteur;
+    double variable_intermediaire_x;
+    double variable_intermediaire_y;
     int taille_map = 29;
     float vitesse_deplacement = 0.8;
     sf::Vector2f before_p1;
