@@ -12,5 +12,5 @@ Fenetre::Fenetre(int _largeur, int _hauteur) : largeur(_largeur), hauteur(_haute
 }
 
 void Fenetre::run() {
-std::cout << "bjr" << std::endl;
+std::cout << "Lancement du jeu" << std::endl;
 }

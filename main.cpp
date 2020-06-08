@@ -48,14 +48,18 @@ int main() {
     sf::Text label;
     sf::Text win_text;
 
-    std::string chaine;
+    std::string const nbrGames("res/nbrGames.txt");
+    std::ofstream monFlux(nbrGames.c_str());
+    if (monFlux){
+
+    }
+    else{
+        std::cout << "marche pas" << std::endl;
+    }
 
 
     Fenetre window(longueur, hauteur);
     window.run();
-
-
-    std::cout << "Lancement du jeu" << std::endl;
 
 
     int tabmap[29][29] = //CORRESPOND A MA MAP
@@ -283,6 +287,13 @@ int main() {
                     win_text.setPosition(50, 200);
                     win_text.setOutlineColor(sf::Color::Blue);
                     win_text.setOutlineThickness(0);
+                    if (monFlux){
+                        monFlux << "Victoire !!" << std::endl;
+                    }
+                    else{
+                        std::cout << "echec d'ecriture dans mon fichier" << std::endl;
+                    }
+
 
 
                 } else if (tabmap[y][x] == 5 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
