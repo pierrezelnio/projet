@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "shape.h"
@@ -34,8 +35,20 @@ int main() {
     sf::Sprite sprite_piece_9;
     sf::Sprite sprite_piece_10;
     sf::Font font;
+    sf::Text texte_piece_1;
+    sf::Text texte_piece_2;
+    sf::Text texte_piece_3;
+    sf::Text texte_piece_4;
+    sf::Text texte_piece_5;
+    sf::Text texte_piece_6;
+    sf::Text texte_piece_7;
+    sf::Text texte_piece_8;
+    sf::Text texte_piece_9;
+    sf::Text texte_piece_10;
     sf::Text label;
     sf::Text win_text;
+
+    std::string chaine;
 
 
     Fenetre window(longueur, hauteur);
@@ -49,21 +62,21 @@ int main() {
             {
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                     {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 1, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 3, 0, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 0, 1},
+                    {1, 0, 0, 1, 0, 1, 5, 1, 0, 1, 6, 1, 0, 0, 0, 3, 0, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 0, 1},
                     {1, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1},
-                    {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1},
+                    {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 7, 1, 1, 1, 1, 0, 1},
                     {1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 1, 1, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 1, 1, 1, 0, 0, 3, 0, 8, 1, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 1},
                     {1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1},
-                    {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 9, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11, 1},
                     {1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 3, 1},
                     {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 3, 1, 0, 1, 1, 0, 1, 0, 1},
                     {1, 1, 1, 1, 0, 0, 3, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 10, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
                     {1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
                     {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1},
+                    {1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 12, 1, 0, 1},
                     {1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 3, 0, 1, 1, 1, 2, 1},
                     {1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
                     {1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
@@ -72,8 +85,8 @@ int main() {
                     {1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 1},
                     {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 1, 3, 1, 1},
                     {1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1},
-                    {1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 2, 1, 1},
-                    {1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 0, 1},
+                    {1, 13, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 2, 1, 1},
+                    {1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 14, 1, 0, 0, 0, 0, 2, 0, 1, 0, 0, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 1, 0, 1, 5, 0, 1, 0, 3, 0, 0, 1},
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 
@@ -104,11 +117,6 @@ int main() {
                 mur.setFillColor((sf::Color::Yellow));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
-            } else if (tabmap[y][x] == 5) {
-                sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
-                mur.setFillColor((sf::Color(250, 102, 0)));
-                mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
-                mur_vnr.push_back(mur);
             }
         }
     }
@@ -123,6 +131,7 @@ int main() {
                                    sf::IntRect(224, 0, 32, 32))) {
         std::cout << "echec du sprite" << std::endl;
     }
+
 
     if (!piece.loadFromFile("res/img/piece.JPG",
                             sf::IntRect (7, 7, 32, 32))){
@@ -276,7 +285,148 @@ int main() {
                     win_text.setOutlineThickness(0);
 
 
+                } else if (tabmap[y][x] == 5 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    texte_piece_1.setFont(font);
+                    texte_piece_1.setString("x");
+                    texte_piece_1.setPosition(longueur * 6 + 8, hauteur * 2 - 5);
+                    texte_piece_1.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 5 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                          px2 + longueur >= left) {
+                    texte_piece_1.setFont(font);
+                    texte_piece_1.setString("x");
+                    texte_piece_1.setPosition(longueur * 6 + 8, hauteur * 2 - 5);
+                    texte_piece_1.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 6 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    texte_piece_2.setFont(font);
+                    texte_piece_2.setString("x");
+                    texte_piece_2.setPosition(longueur * 10 + 8, hauteur * 2 - 5);
+                    texte_piece_2.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 6 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    texte_piece_2.setFont(font);
+                    texte_piece_2.setString("x");
+                    texte_piece_2.setPosition(longueur * 10 + 8, hauteur * 2 - 5);
+                    texte_piece_2.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 7 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    texte_piece_3.setFont(font);
+                    texte_piece_3.setString("x");
+                    texte_piece_3.setPosition(longueur * 22 + 8, hauteur * 5 - 5);
+                    texte_piece_3.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 7 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    texte_piece_3.setFont(font);
+                    texte_piece_3.setString("x");
+                    texte_piece_3.setPosition(longueur * 22 + 8, hauteur * 5 - 5);
+                    texte_piece_3.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 8 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    texte_piece_4.setFont(font);
+                    texte_piece_4.setString("x");
+                    texte_piece_4.setPosition(longueur * 10 + 8, hauteur * 7 - 5);
+                    texte_piece_4.setFillColor(sf::Color::Black);
+
+                }  else if (tabmap[y][x] == 8 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                            px2 + longueur >= left) {
+                    texte_piece_4.setFont(font);
+                    texte_piece_4.setString("x");
+                    texte_piece_4.setPosition(longueur * 10 + 8, hauteur * 7 - 5);
+                    texte_piece_4.setFillColor(sf::Color::Black);
+
+                }  else if (tabmap[y][x] == 9 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                            px1 + longueur >= left) {
+                    texte_piece_5.setFont(font);
+                    texte_piece_5.setString("x");
+                    texte_piece_5.setPosition(longueur * 12 + 8, hauteur * 9 - 5);
+                    texte_piece_5.setFillColor(sf::Color::Black);
+
+                }  else if (tabmap[y][x] == 9 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                            px2 + longueur >= left) {
+                    texte_piece_5.setFont(font);
+                    texte_piece_5.setString("x");
+                    texte_piece_5.setPosition(longueur * 12 + 8, hauteur * 9 - 5);
+                    texte_piece_5.setFillColor(sf::Color::Black);
+
+                }  else if (tabmap[y][x] == 10 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                            px1 + longueur >= left) {
+                    texte_piece_6.setFont(font);
+                    texte_piece_6.setString("x");
+                    texte_piece_6.setPosition(longueur * 14 + 8, hauteur * 13 - 5);
+                    texte_piece_6.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 10 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    texte_piece_6.setFont(font);
+                    texte_piece_6.setString("x");
+                    texte_piece_6.setPosition(longueur * 14 + 8, hauteur * 13 - 5);
+                    texte_piece_6.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 11 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    texte_piece_7.setFont(font);
+                    texte_piece_7.setString("x");
+                    texte_piece_7.setPosition(longueur * 27 + 8, hauteur * 9 - 5);
+                    texte_piece_7.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 11 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    texte_piece_7.setFont(font);
+                    texte_piece_7.setString("x");
+                    texte_piece_7.setPosition(longueur * 27 + 8, hauteur * 9 - 5);
+                    texte_piece_7.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 12 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                          px1 + longueur >= left) {
+                    texte_piece_8.setFont(font);
+                    texte_piece_8.setString("x");
+                    texte_piece_8.setPosition(longueur * 25 + 8, hauteur * 16 - 5);
+                    texte_piece_8.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 12 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    texte_piece_8.setFont(font);
+                    texte_piece_8.setString("x");
+                    texte_piece_8.setPosition(longueur * 25 + 8, hauteur * 16 - 5);
+                    texte_piece_8.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 13 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    texte_piece_9.setFont(font);
+                    texte_piece_9.setString("x");
+                    texte_piece_9.setPosition(longueur * 1 + 8, hauteur * 25 - 5);
+                    texte_piece_9.setFillColor(sf::Color::Black);
+
+                } else if (tabmap[y][x] == 13 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    texte_piece_9.setFont(font);
+                    texte_piece_9.setString("x");
+                    texte_piece_9.setPosition(longueur * 1 + 8, hauteur * 25 - 5);
+                    texte_piece_9.setFillColor(sf::Color::Black);
+
+                }  else if (tabmap[y][x] == 14 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                            px1 + longueur >= left) {
+                    texte_piece_10.setFont(font);
+                    texte_piece_10.setString("x");
+                    texte_piece_10.setPosition(longueur * 17 + 8, hauteur * 26 - 5);
+                    texte_piece_10.setFillColor(sf::Color::Black);
+
+                }   else if (tabmap[y][x] == 14 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                             px2 + longueur >= left) {
+                    texte_piece_10.setFont(font);
+                    texte_piece_10.setString("x");
+                    texte_piece_10.setPosition(longueur * 17 + 8, hauteur * 26 - 5);
+                    texte_piece_10.setFillColor(sf::Color::Black);
+
                 }
+
             }
 
         }
@@ -301,6 +451,16 @@ int main() {
         window.draw(sprite_piece_10);
         window.draw(label);
         window.draw(win_text);
+        window.draw(texte_piece_1);
+        window.draw(texte_piece_2);
+        window.draw(texte_piece_3);
+        window.draw(texte_piece_4);
+        window.draw(texte_piece_5);
+        window.draw(texte_piece_6);
+        window.draw(texte_piece_7);
+        window.draw(texte_piece_8);
+        window.draw(texte_piece_9);
+        window.draw(texte_piece_10);
         window.display();
     }
     std::cout << "Fermeture du jeu, a la prochaine!" << std::endl;
