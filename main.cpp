@@ -13,6 +13,16 @@ int main() {
     double py1 = hauteur;
     double px2 = longueur * 27;
     double py2 = hauteur;
+    bool bool_piece_1 = false;
+    bool bool_piece_2 = false;
+    bool bool_piece_3 = false;
+    bool bool_piece_4 = false;
+    bool bool_piece_5 = false;
+    bool bool_piece_6 = false;
+    bool bool_piece_7 = false;
+    bool bool_piece_8 = false;
+    bool bool_piece_9 = false;
+    bool bool_piece_10 = false;
     double variable_intermediaire_x;
     double variable_intermediaire_y;
     int taille_map = 29;
@@ -50,10 +60,9 @@ int main() {
 
     std::string const nbrGames("res/nbrGames.txt");
     std::ofstream monFlux(nbrGames.c_str());
-    if (monFlux){
+    if (monFlux) {
 
-    }
-    else{
+    } else {
         std::cout << "marche pas" << std::endl;
     }
 
@@ -64,35 +73,35 @@ int main() {
 
     int tabmap[29][29] = //CORRESPOND A MA MAP
             {
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 1, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 5, 1, 0, 1, 6, 1, 0, 0, 0, 3, 0, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1},
-                    {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 7, 1, 1, 1, 1, 0, 1},
-                    {1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 1, 1, 1, 0, 0, 3, 0, 8, 1, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 1},
-                    {1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1},
-                    {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 9, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11, 1},
-                    {1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 3, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 3, 1, 0, 1, 1, 0, 1, 0, 1},
-                    {1, 1, 1, 1, 0, 0, 3, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 10, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-                    {1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 12, 1, 0, 1},
-                    {1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 3, 0, 1, 1, 1, 2, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
-                    {1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1},
-                    {1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1},
-                    {1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 1},
-                    {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 1, 3, 1, 1},
-                    {1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1},
-                    {1, 13, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 2, 1, 1},
-                    {1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 14, 1, 0, 0, 0, 0, 2, 0, 1, 0, 0, 1},
-                    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 1, 0, 1, 5, 0, 1, 0, 3, 0, 0, 1},
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1,  1, 1,  1},
+                    {1, 0,  0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0,  3, 0, 0,  0, 0, 2, 0, 3, 0, 0, 0,  1, 0,  1},
+                    {1, 0,  0, 1, 0, 1, 5, 1, 0, 1, 6, 1, 0, 0, 0,  3, 0, 0,  1, 0, 1, 1, 1, 1, 1, 2,  1, 0,  1},
+                    {1, 0,  0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,  1, 1, 1,  1, 1, 1, 0, 0, 0, 0, 0,  0, 0,  1},
+                    {1, 0,  0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1,  0, 0, 0,  1, 0, 1, 1, 1, 1, 0, 0,  0, 0,  1},
+                    {1, 1,  1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,  1, 1, 0,  1, 0, 1, 0, 7, 1, 1, 1,  1, 0,  1},
+                    {1, 0,  0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,  0, 1, 0,  0, 0, 1, 2, 1, 1, 0, 0,  0, 0,  1},
+                    {1, 0,  0, 1, 1, 1, 0, 0, 3, 0, 8, 1, 0, 0, 0,  0, 3, 0,  0, 0, 1, 0, 0, 3, 0, 0,  0, 0,  1},
+                    {1, 1,  0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1,  2, 2, 1, 1, 1, 1, 1, 2,  1, 1,  1},
+                    {1, 0,  0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 9, 1, 0,  2, 0, 1,  0, 0, 0, 0, 0, 0, 0, 0,  1, 11, 1},
+                    {1, 1,  1, 2, 2, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,  2, 0, 1,  0, 0, 0, 0, 0, 0, 1, 0,  1, 3,  1},
+                    {1, 0,  0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0,  1, 0, 1,  1, 3, 3, 1, 0, 1, 1, 0,  1, 0,  1},
+                    {1, 1,  1, 1, 0, 0, 3, 0, 1, 1, 1, 1, 1, 1, 0,  1, 0, 0,  1, 0, 0, 1, 0, 1, 0, 0,  0, 0,  1},
+                    {1, 0,  0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 10, 1, 0, 0,  0, 0, 0, 1, 0, 1, 1, 1,  1, 0,  1},
+                    {1, 3,  3, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1,  1, 1, 1,  1, 0, 0, 1, 0, 0, 0, 0,  0, 0,  1},
+                    {1, 0,  0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,  0, 2, 0,  0, 0, 0, 1, 1, 1, 1, 1,  1, 0,  1},
+                    {1, 0,  0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0,  0, 1, 0,  1, 1, 1, 1, 1, 0, 0, 12, 1, 0,  1},
+                    {1, 2,  2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0,  1, 1, 1,  1, 0, 0, 0, 3, 0, 1, 1,  1, 2,  1},
+                    {1, 0,  0, 0, 0, 0, 1, 0, 1, 1, 3, 1, 0, 1, 0,  0, 0, 0,  0, 0, 0, 0, 1, 0, 1, 0,  0, 0,  1},
+                    {1, 0,  0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1,  1, 1, 1,  0, 0, 0, 0, 1, 0, 1, 0,  0, 0,  1},
+                    {1, 1,  1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0,  0, 0, 1,  1, 1, 1, 1, 1, 0, 1, 0,  0, 0,  1},
+                    {1, 0,  0, 0, 2, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,  0, 0, 3,  0, 0, 0, 1, 1, 1, 1, 1,  1, 0,  1},
+                    {1, 1,  0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,  1, 0, 1,  1, 0, 0, 2, 0, 1, 0, 1,  0, 0,  1},
+                    {1, 0,  0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0,  0, 0, 0,  1, 0, 0, 2, 0, 0, 0, 1,  3, 1,  1},
+                    {1, 0,  1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 2,  1, 1, 0,  1, 1, 1, 1, 1, 1, 0, 1,  0, 0,  1},
+                    {1, 13, 1, 0, 1, 0, 1, 0, 1, 20, 1, 0, 1, 0, 0,  0, 1, 1,  1, 0, 1, 0, 0, 1, 0, 1,  2, 1,  1},
+                    {1, 1,  1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0,  1, 1, 14, 1, 0, 0, 0, 0, 2, 0, 1,  0, 0,  1},
+                    {1, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,  3, 0, 0,  1, 0, 1, 5, 0, 1, 0, 3,  0, 0,  1},
+                    {1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1,  1, 1,  1},
 
 
             };
@@ -121,6 +130,11 @@ int main() {
                 mur.setFillColor((sf::Color::Yellow));
                 mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
                 mur_vnr.push_back(mur);
+            }   else if (tabmap[y][x] == 20) {
+                sf::RectangleShape mur(sf::Vector2f(longueur, hauteur));
+                mur.setFillColor((sf::Color(255, 102, 0)));
+                mur.setPosition(sf::Vector2f(x * longueur, y * hauteur));
+                mur_vnr.push_back(mur);
             }
         }
     }
@@ -136,21 +150,20 @@ int main() {
         std::cout << "echec du sprite" << std::endl;
     }
 
-
     if (!piece.loadFromFile("res/img/piece.JPG",
-                            sf::IntRect (7, 7, 32, 32))){
+                            sf::IntRect(7, 7, 32, 32))) {
         std::cout << "echec du sprite piece" << std::endl;
     }
-    sprite_piece_1.setPosition(longueur*10, hauteur*7);
-    sprite_piece_2.setPosition(longueur*10, hauteur*2);
-    sprite_piece_3.setPosition(longueur*27, hauteur*9);
-    sprite_piece_4.setPosition(longueur*1, hauteur*25);
-    sprite_piece_5.setPosition(longueur*14, hauteur*13);
-    sprite_piece_6.setPosition(longueur*17, hauteur*26);
-    sprite_piece_7.setPosition(longueur*25, hauteur*16);
-    sprite_piece_8.setPosition(longueur*6, hauteur*2);
-    sprite_piece_9.setPosition(longueur*12, hauteur*9);
-    sprite_piece_10.setPosition(longueur*22, hauteur*5);
+    sprite_piece_1.setPosition(longueur * 10, hauteur * 7);
+    sprite_piece_2.setPosition(longueur * 10, hauteur * 2);
+    sprite_piece_3.setPosition(longueur * 27, hauteur * 9);
+    sprite_piece_4.setPosition(longueur * 1, hauteur * 25);
+    sprite_piece_5.setPosition(longueur * 14, hauteur * 13);
+    sprite_piece_6.setPosition(longueur * 17, hauteur * 26);
+    sprite_piece_7.setPosition(longueur * 25, hauteur * 16);
+    sprite_piece_8.setPosition(longueur * 6, hauteur * 2);
+    sprite_piece_9.setPosition(longueur * 12, hauteur * 9);
+    sprite_piece_10.setPosition(longueur * 22, hauteur * 5);
 
     if (!font.loadFromFile("res/font/ALBAM.TTF")) { //Police d'ecriture
         std::cout << "echec de la police d'ecriture" << std::endl;
@@ -161,8 +174,6 @@ int main() {
     label.setPosition(200, -5);
     label.setOutlineColor(sf::Color(255, 179, 71));
     label.setOutlineThickness(2);
-
-
 
 
     sprite_personnage_1.setTexture(personnage_1);
@@ -278,8 +289,18 @@ int main() {
                     px1 = before_p1.x;
                     py1 = before_p1.y;
 
+                } else if (tabmap[y][x] == 20 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
+                    px1 = before_p1.x;
+                    py1 = before_p1.y;
+
+                } else if (tabmap[y][x] == 20 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+                    px2 = before_p2.x;
+                    py2 = before_p2.y;
+
                 } else if (tabmap[y][x] == 4 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
-                           px1 + longueur >= left){
+                           px1 + longueur >= left) {
 
                     win_text.setFont(font);
                     win_text.setString(" YOU WIN");
@@ -287,13 +308,27 @@ int main() {
                     win_text.setPosition(50, 200);
                     win_text.setOutlineColor(sf::Color::Blue);
                     win_text.setOutlineThickness(0);
-                    if (monFlux){
+                    if (monFlux) {
                         monFlux << "Victoire !!" << std::endl;
-                    }
-                    else{
+                    } else {
                         std::cout << "echec d'ecriture dans mon fichier" << std::endl;
                     }
 
+
+                } else if (tabmap[y][x] == 4 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
+
+                    win_text.setFont(font);
+                    win_text.setString(" YOU WIN");
+                    win_text.setCharacterSize(200);
+                    win_text.setPosition(50, 200);
+                    win_text.setOutlineColor(sf::Color::Blue);
+                    win_text.setOutlineThickness(0);
+                    if (monFlux) {
+                        monFlux << "Victoire !!" << std::endl;
+                    } else {
+                        std::cout << "echec d'ecriture dans mon fichier" << std::endl;
+                    }
 
 
                 } else if (tabmap[y][x] == 5 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
@@ -302,13 +337,15 @@ int main() {
                     texte_piece_1.setString("x");
                     texte_piece_1.setPosition(longueur * 6 + 8, hauteur * 2 - 5);
                     texte_piece_1.setFillColor(sf::Color::Black);
+                    bool_piece_1 = true;
 
                 } else if (tabmap[y][x] == 5 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
-                          px2 + longueur >= left) {
+                           px2 + longueur >= left) {
                     texte_piece_1.setFont(font);
                     texte_piece_1.setString("x");
                     texte_piece_1.setPosition(longueur * 6 + 8, hauteur * 2 - 5);
                     texte_piece_1.setFillColor(sf::Color::Black);
+                    bool_piece_1 = true;
 
                 } else if (tabmap[y][x] == 6 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                            px1 + longueur >= left) {
@@ -316,6 +353,7 @@ int main() {
                     texte_piece_2.setString("x");
                     texte_piece_2.setPosition(longueur * 10 + 8, hauteur * 2 - 5);
                     texte_piece_2.setFillColor(sf::Color::Black);
+                    bool_piece_2 = true;
 
                 } else if (tabmap[y][x] == 6 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
                            px2 + longueur >= left) {
@@ -323,6 +361,7 @@ int main() {
                     texte_piece_2.setString("x");
                     texte_piece_2.setPosition(longueur * 10 + 8, hauteur * 2 - 5);
                     texte_piece_2.setFillColor(sf::Color::Black);
+                    bool_piece_2 = true;
 
                 } else if (tabmap[y][x] == 7 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                            px1 + longueur >= left) {
@@ -330,6 +369,7 @@ int main() {
                     texte_piece_3.setString("x");
                     texte_piece_3.setPosition(longueur * 22 + 8, hauteur * 5 - 5);
                     texte_piece_3.setFillColor(sf::Color::Black);
+                    bool_piece_3 = true;
 
                 } else if (tabmap[y][x] == 7 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
                            px2 + longueur >= left) {
@@ -337,6 +377,7 @@ int main() {
                     texte_piece_3.setString("x");
                     texte_piece_3.setPosition(longueur * 22 + 8, hauteur * 5 - 5);
                     texte_piece_3.setFillColor(sf::Color::Black);
+                    bool_piece_3 = true;
 
                 } else if (tabmap[y][x] == 8 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                            px1 + longueur >= left) {
@@ -344,34 +385,39 @@ int main() {
                     texte_piece_4.setString("x");
                     texte_piece_4.setPosition(longueur * 10 + 8, hauteur * 7 - 5);
                     texte_piece_4.setFillColor(sf::Color::Black);
+                    bool_piece_4 = true;
 
-                }  else if (tabmap[y][x] == 8 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
-                            px2 + longueur >= left) {
+                } else if (tabmap[y][x] == 8 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
                     texte_piece_4.setFont(font);
                     texte_piece_4.setString("x");
                     texte_piece_4.setPosition(longueur * 10 + 8, hauteur * 7 - 5);
                     texte_piece_4.setFillColor(sf::Color::Black);
+                    bool_piece_4 = true;
 
-                }  else if (tabmap[y][x] == 9 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
-                            px1 + longueur >= left) {
+                } else if (tabmap[y][x] == 9 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
                     texte_piece_5.setFont(font);
                     texte_piece_5.setString("x");
                     texte_piece_5.setPosition(longueur * 12 + 8, hauteur * 9 - 5);
                     texte_piece_5.setFillColor(sf::Color::Black);
+                    bool_piece_5 = true;
 
-                }  else if (tabmap[y][x] == 9 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
-                            px2 + longueur >= left) {
+                } else if (tabmap[y][x] == 9 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
                     texte_piece_5.setFont(font);
                     texte_piece_5.setString("x");
                     texte_piece_5.setPosition(longueur * 12 + 8, hauteur * 9 - 5);
                     texte_piece_5.setFillColor(sf::Color::Black);
+                    bool_piece_5 = true;
 
-                }  else if (tabmap[y][x] == 10 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
-                            px1 + longueur >= left) {
+                } else if (tabmap[y][x] == 10 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
                     texte_piece_6.setFont(font);
                     texte_piece_6.setString("x");
                     texte_piece_6.setPosition(longueur * 14 + 8, hauteur * 13 - 5);
                     texte_piece_6.setFillColor(sf::Color::Black);
+                    bool_piece_6 = true;
 
                 } else if (tabmap[y][x] == 10 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
                            px2 + longueur >= left) {
@@ -379,6 +425,7 @@ int main() {
                     texte_piece_6.setString("x");
                     texte_piece_6.setPosition(longueur * 14 + 8, hauteur * 13 - 5);
                     texte_piece_6.setFillColor(sf::Color::Black);
+                    bool_piece_6 = true;
 
                 } else if (tabmap[y][x] == 11 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                            px1 + longueur >= left) {
@@ -386,6 +433,7 @@ int main() {
                     texte_piece_7.setString("x");
                     texte_piece_7.setPosition(longueur * 27 + 8, hauteur * 9 - 5);
                     texte_piece_7.setFillColor(sf::Color::Black);
+                    bool_piece_7 = true;
 
                 } else if (tabmap[y][x] == 11 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
                            px2 + longueur >= left) {
@@ -393,13 +441,15 @@ int main() {
                     texte_piece_7.setString("x");
                     texte_piece_7.setPosition(longueur * 27 + 8, hauteur * 9 - 5);
                     texte_piece_7.setFillColor(sf::Color::Black);
+                    bool_piece_7 = true;
 
                 } else if (tabmap[y][x] == 12 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
-                          px1 + longueur >= left) {
+                           px1 + longueur >= left) {
                     texte_piece_8.setFont(font);
                     texte_piece_8.setString("x");
                     texte_piece_8.setPosition(longueur * 25 + 8, hauteur * 16 - 5);
                     texte_piece_8.setFillColor(sf::Color::Black);
+                    bool_piece_8 = true;
 
                 } else if (tabmap[y][x] == 12 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
                            px2 + longueur >= left) {
@@ -407,6 +457,7 @@ int main() {
                     texte_piece_8.setString("x");
                     texte_piece_8.setPosition(longueur * 25 + 8, hauteur * 16 - 5);
                     texte_piece_8.setFillColor(sf::Color::Black);
+                    bool_piece_8 = true;
 
                 } else if (tabmap[y][x] == 13 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
                            px1 + longueur >= left) {
@@ -414,6 +465,7 @@ int main() {
                     texte_piece_9.setString("x");
                     texte_piece_9.setPosition(longueur * 1 + 8, hauteur * 25 - 5);
                     texte_piece_9.setFillColor(sf::Color::Black);
+                    bool_piece_9 = true;
 
                 } else if (tabmap[y][x] == 13 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
                            px2 + longueur >= left) {
@@ -421,27 +473,31 @@ int main() {
                     texte_piece_9.setString("x");
                     texte_piece_9.setPosition(longueur * 1 + 8, hauteur * 25 - 5);
                     texte_piece_9.setFillColor(sf::Color::Black);
+                    bool_piece_9 = true;
 
-                }  else if (tabmap[y][x] == 14 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
-                            px1 + longueur >= left) {
+                } else if (tabmap[y][x] == 14 && py1 <= bottom && py1 + hauteur >= top && px1 <= right &&
+                           px1 + longueur >= left) {
                     texte_piece_10.setFont(font);
                     texte_piece_10.setString("x");
                     texte_piece_10.setPosition(longueur * 17 + 8, hauteur * 26 - 5);
                     texte_piece_10.setFillColor(sf::Color::Black);
+                    bool_piece_10 = true;
 
-                }   else if (tabmap[y][x] == 14 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
-                             px2 + longueur >= left) {
+                } else if (tabmap[y][x] == 14 && py2 <= bottom && py2 + hauteur >= top && px2 <= right &&
+                           px2 + longueur >= left) {
                     texte_piece_10.setFont(font);
                     texte_piece_10.setString("x");
                     texte_piece_10.setPosition(longueur * 17 + 8, hauteur * 26 - 5);
                     texte_piece_10.setFillColor(sf::Color::Black);
+                    bool_piece_10 = true;
 
+                } if (bool_piece_1 && bool_piece_2 && bool_piece_3 && bool_piece_4 && bool_piece_5 && bool_piece_6 && bool_piece_7 && bool_piece_8 && bool_piece_9 && bool_piece_10){
+                    tabmap[25][9] = 4;
                 }
 
             }
 
         }
-
         window.clear(sf::Color(182, 230, 130));
 
         for (int i = 0; i < mur_vnr.size(); i++)
