@@ -9,3 +9,5 @@ Renard bleu :
 -peut franchir les murs bleux
 
 la touche "T" permet d'intervertir les postions des deux renards
+
+Il faut obtenir les 10 pièces pour pouvoir utiliser le portail et sortir !
